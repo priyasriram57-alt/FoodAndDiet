@@ -1,0 +1,11 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+pandas
+numpy
+scikit-learn
+tensorflow
+python-dotenv
+matplotlib
+seaborn
+gunicorn
