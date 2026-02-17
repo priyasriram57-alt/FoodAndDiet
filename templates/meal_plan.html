@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}Meal Plans - FoodAI{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<style>
+    .planner-card {
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        background: white;
+    }
+    .page-header-planner {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border-radius: 1rem;
+        padding: 2rem;
+        color: white;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    .page-header-planner::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        opacity: 0.4;
+    }
+    .summary-card {
+        background: linear-gradient(to right bottom, #ffffff, #f8fafc);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4 md:px-5 py-4">
+    <!-- Header -->
+    <div class="page-header-planner d-flex justify-content-between align-items-center mb-4">
+        <div class="position-relative" style="z-index: 2;">
+            <h2 class="fw-bold mb-1 text-white">Weekly Meal Planner</h2>
+            <p class="mb-0 text-white-50">Structure your nutrition for success</p>
+        </div>
+        <div class="d-none d-md-block opacity-50 position-relative" style="z-index: 2;">
+            <i class="fas fa-calendar-alt fa-3x text-white"></i>
+        </div>
+    </div>
+
+    <!-- Control Section -->
+    <div class="card planner-card mb-5">
+        <div class="card-body p-4">
+            <div class="row g-4 align-items-end">
+                <div class="col-lg-3 col-md-6">
+                    <label class="form-label text-xs fw-bold text-uppercase text-muted small">Duration</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-0"><i class="fas fa-calendar-day text-muted"></i></span>
+                        <select class="form-select bg-light border-0" id="planDuration">
+                            <option value="7">7 Days</option>
+                            <option value="14">14 Days</option>
+                            <option value="30">30 Days</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <label class="form-label text-xs fw-bold text-uppercase text-muted small">Target Calories</label>
+                    <div class="input-group">
+                         <span class="input-group-text bg-light border-0"><i class="fas fa-fire text-muted"></i></span>
+                         <input type="number" class="form-control bg-light border-0" id="calorieTarget" value="2000" min="1000" max="5000">
+                         <span class="input-group-text bg-light border-0 text-muted">kcal</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <label class="form-label text-xs fw-bold text-uppercase text-muted small">Diet Type</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-0"><i class="fas fa-carrot text-muted"></i></span>
+                        <select class="form-select bg-light border-0" id="dietType">
+                            <option value="balanced">Balanced</option>
+                            <option value="high_protein">High Protein</option>
+                            <option value="low_carb">Low Carb</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <button class="btn btn-success w-100 shadow-sm" id="generateNewPlan" style="height: 42px;">
+                        <i class="fas fa-magic me-2"></i> Generate Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Meal Plan Result Section -->
+    <div id="mealPlanContainer" class="mb-5">
+        <div class="text-center py-5">
+            <div class="mb-3 opacity-25">
+                <i class="fas fa-calendar-check fa-4x text-muted"></i>
+            </div>
+            <h5 class="text-secondary fw-normal">No plan generated yet</h5>
+            <p class="text-muted">Set your preferences above and click Generate Plan.</p>
+        </div>
+    </div>
+
+    <!-- Summary and Grocery List Row -->
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div class="card h-100 border-0 shadow-sm" style="border-radius: 1rem;">
+                <div class="card-header bg-transparent border-0 py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-chart-pie me-2 text-warning"></i> Nutrition Summary</h5>
+                </div>
+                <div class="card-body">
+                    <div id="nutritionSummary" class="text-center py-4">
+                        <p class="text-muted">Generate a meal plan to see nutrition summary</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-5">
+            <div class="card h-100 border-0 shadow-sm" style="border-radius: 1rem;">
+                <div class="card-header bg-transparent border-0 py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-shopping-basket me-2 text-success"></i> Grocery List</h5>
+                    <button class="btn btn-sm btn-light text-success rounded-pill" id="exportGroceryList">
+                        <i class="fas fa-download me-1"></i> Export
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div id="groceryList" class="grocery-list-container">
+                        <div class="text-center py-5">
+                            <div class="mb-3 opacity-50">
+                                <i class="fas fa-shopping-basket fa-3x text-success"></i>
+                            </div>
+                            <h6 class="text-muted fw-bold">Ready to Shop?</h6>
+                            <p class="small text-muted mb-0 px-4">
+                                Once you generate a meal plan, your consolidated grocery shopping list will appear here automatically.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Day Details -->
+<div class="modal fade" id="mealPlanModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 1rem;">
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold">Meal Plan Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4" id="mealPlanModalContent">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}

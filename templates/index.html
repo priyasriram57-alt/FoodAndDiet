@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="hero-title">Smart Food Recommendations with AI</h1>
+                <p class="hero-subtitle">
+                    Get personalized diet plans and food recommendations using deep learning technology. 
+                    Achieve your health goals with intelligent nutrition analysis.
+                </p>
+                <div class="mt-4">
+                    <button class="btn btn-primary btn-lg me-3" onclick="showAuthModal()">
+                        <i class="fas fa-user-plus me-2"></i> Get Started Free
+                    </button>
+                    <a href="#features" class="btn btn-outline-dark btn-lg">
+                        <i class="fas fa-play-circle me-2"></i> Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="hero-image">
+                    <i class="fas fa-brain fa-10x text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Key Features</h2>
+            <p class="text-muted">Discover what makes our system unique</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon mb-4">
+                            <i class="fas fa-robot fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">AI-Powered Recommendations</h4>
+                        <p class="card-text text-muted">
+                            Advanced deep learning algorithms analyze your profile and preferences 
+                            to provide personalized food recommendations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon mb-4">
+                            <i class="fas fa-chart-line fa-3x text-success"></i>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Nutrition Analysis</h4>
+                        <p class="card-text text-muted">
+                            Detailed nutrition tracking and analysis to ensure you meet your 
+                            daily nutritional requirements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon mb-4">
+                            <i class="fas fa-calendar-alt fa-3x text-warning"></i>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Meal Planning</h4>
+                        <p class="card-text text-muted">
+                            Generate weekly meal plans tailored to your dietary goals, 
+                            preferences, and lifestyle.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section id="how-it-works" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">How It Works</h2>
+            <p class="text-muted">Three simple steps to better nutrition</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="step-card text-center">
+                    <div class="step-number">1</div>
+                    <h4>Create Your Profile</h4>
+                    <p>Tell us about yourself, your goals, preferences, and dietary restrictions.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="step-card text-center">
+                    <div class="step-number">2</div>
+                    <h4>Get Recommendations</h4>
+                    <p>Our AI analyzes your profile and provides personalized food recommendations.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="step-card text-center">
+                    <div class="step-number">3</div>
+                    <h4>Track & Improve</h4>
+                    <p>Log your meals, track progress, and get continuous optimization.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Authentication Modal -->
+<div class="modal fade" id="authModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Join FoodAI</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="authTabs">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#loginTab">
+                            Login
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#registerTab">
+                            Register
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content py-4">
+                    <!-- Login Tab -->
+                    <div class="tab-pane fade show active" id="loginTab">
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" id="loginUsername" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Register Tab -->
+                    <div class="tab-pane fade" id="registerTab">
+                        <form id="registerForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="registerUsername" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="registerEmail" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="registerPassword" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="registerConfirmPassword" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Age</label>
+                                    <input type="number" class="form-control" id="registerAge" min="10" max="100" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Gender</label>
+                                    <select class="form-select" id="registerGender" required>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Activity Level</label>
+                                    <select class="form-select" id="registerActivity" required>
+                                        <option value="sedentary">Sedentary</option>
+                                        <option value="light">Light</option>
+                                        <option value="moderate">Moderate</option>
+                                        <option value="active">Active</option>
+                                        <option value="very_active">Very Active</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Weight (kg)</label>
+                                    <input type="number" class="form-control" id="registerWeight" step="0.1" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Height (cm)</label>
+                                    <input type="number" class="form-control" id="registerHeight" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Dietary Goal</label>
+                                <select class="form-select" id="registerGoal" required>
+                                    <option value="weight_loss">Weight Loss</option>
+                                    <option value="weight_gain">Weight Gain</option>
+                                    <option value="muscle_gain">Muscle Gain</option>
+                                    <option value="maintenance">Maintenance</option>
+                                    <option value="health_maintenance">Health Maintenance</option>
+                                </select>
+                            </div>
+
+                            <!-- Hidden fields or placeholders for additional info needed by JS -->
+                             <!-- In a real app these would be proper inputs, usually multiselect or tags -->
+                            <div class="mb-3 d-none">
+                                <input type="text" id="dislikedFoods" value="">
+                                <input type="text" id="favoriteFoods" value="">
+                                <!-- Checkboxes assumed by JS helper getSelectedCheckboxes -->
+                                <div id="healthConditions"></div>
+                                <div id="preferredCuisines"></div>
+                                <div id="allergies"></div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success w-100">Create Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .section-title {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--dark-color);
+    }
+    
+    .feature-icon {
+        color: var(--primary-color);
+    }
+    
+    .step-card {
+        padding: 2rem;
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+    }
+    
+    .step-number {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-image i {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+</style>
+{% endblock %}
