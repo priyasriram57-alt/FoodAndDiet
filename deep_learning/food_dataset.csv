@@ -1,0 +1,25 @@
+name,category,meal_type,cuisine,calories,protein,fat,carbs,health_score,prep_time,food_id
+Oatmeal with Berries,Breakfast,breakfast,American,350,12.0,6.0,60,0.9,10,1
+Scrambled Eggs on Toast,Breakfast,breakfast,American,400,20.0,22.0,30,0.8,15,2
+Greek Yogurt Parfait,Breakfast,breakfast,Mediterranean,300,15.0,5.0,45,0.9,5,3
+Avocado Toast,Breakfast,breakfast,Australian,320,8.0,20.0,35,0.9,10,4
+Protein Pancakes,Breakfast,breakfast,American,450,25.0,10.0,55,0.7,20,5
+Grilled Chicken Salad,Lunch,lunch,American,450,40.0,20.0,15,0.9,20,6
+Quinoa Buddha Bowl,Lunch,lunch,Mediterranean,500,18.0,18.0,65,1.0,25,7
+Turkey Wrap,Lunch,lunch,American,420,25.0,12.0,45,0.7,10,8
+Lentil Soup,Lunch,lunch,Mediterranean,300,15.0,5.0,45,0.9,30,9
+Tuna Sandwich,Lunch,lunch,American,400,28.0,15.0,35,0.7,10,10
+Sushi Roll Set,Lunch,lunch,Japanese,480,18.0,10.0,75,0.8,15,11
+Caesar Salad,Lunch,lunch,Italian,350,15.0,25.0,10,0.6,15,12
+Salmon with Asparagus,Dinner,dinner,International,550,35.0,30.0,10,0.9,25,13
+Chicken Stir Fry,Dinner,dinner,Asian,480,30.0,15.0,55,0.8,30,14
+Vegetable Curry with Rice,Dinner,dinner,Indian,520,12.0,20.0,70,0.8,40,15
+Beef Tacos,Dinner,dinner,Mexican,600,30.0,30.0,45,0.6,30,16
+Pasta Primavera,Dinner,dinner,Italian,580,15.0,20.0,80,0.7,25,17
+Grilled Steak with Veggies,Dinner,dinner,American,700,50.0,40.0,15,0.8,30,18
+Apple with Almond Butter,Snack,snack,American,200,4.0,12.0,22,0.9,5,19
+Protein Bar,Snack,snack,American,250,20.0,8.0,25,0.7,0,20
+Trail Mix,Snack,snack,American,300,8.0,20.0,25,0.8,0,21
+Carrot Sticks with Hummus,Snack,snack,Mediterranean,150,5.0,8.0,15,0.9,5,22
+Dark Chocolate,Snack,snack,International,180,2.0,12.0,15,0.6,0,23
+Banana,Snack,snack,Tropical,105,1.3,0.4,27,1.0,0,24
